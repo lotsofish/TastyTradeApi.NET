@@ -16,4 +16,9 @@ public class AccountService
     {
         return await _apiClient.Get<ItemCollection<AccountContainer>>("customers/me/accounts");
     }
+
+    public async Task<ApiResponseWrapper<BalancesResponse>?> GetBalance(string accountNumber)
+    {
+        return await _apiClient.Get<BalancesResponse>($"accounts/{accountNumber}/balances");
+    }
 }
