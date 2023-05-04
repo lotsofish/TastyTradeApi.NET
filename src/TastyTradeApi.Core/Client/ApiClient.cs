@@ -7,20 +7,27 @@ namespace TastyTradeApi.Core.Client;
 
 public class ApiClient
 {
-    private static readonly HttpClient _httpClient = new();
+    private readonly HttpClient _httpClient = new();
     public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         PropertyNamingPolicy = new DashedJsonNamingPolicy.DashedJsonNamingPolicy()
     };
 
-    public ApiClient(string baseAddress)
+    public ApiClient(string baseAddress) : this(baseAddress, null)
+    { }
+
+    public ApiClient(string baseAddress, string? sessionToken)
     {
+        _httpClient.BaseAddress = new Uri(baseAddress);
         _httpClient.DefaultRequestHeaders.Add("User-Agent", "TastyTradeApi.NET");
         _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-        _httpClient.BaseAddress = new Uri(baseAddress);
+        if (!string.IsNullOrEmpty(sessionToken))
+        {
+            SetSessionToken(sessionToken);
+        }
     }
 
-    public void SetAuthorizationToken(string token)
+    public void SetSessionToken(string token)
     {
         _httpClient.DefaultRequestHeaders.Add("Authorization", token);
     }

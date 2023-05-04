@@ -11,9 +11,15 @@ public class TastyTrade
 
     private ApiClient _apiClient;
 
-    public TastyTrade(bool isCert = false)
+    public TastyTrade(string sessionToken) : this(false, sessionToken)
+    { }
+
+    public TastyTrade(bool isCert) : this(isCert, null)
+    { }
+
+    public TastyTrade(bool isCert = false, string? sessionToken = null)
     {
-        _apiClient = new ApiClient(isCert ? BaseUrl_Cert : BaseUrl);
+        _apiClient = new ApiClient(isCert ? BaseUrl_Cert : BaseUrl, sessionToken);
 
         AccountService = new AccountService(_apiClient);
         SessionService = new SessionService(_apiClient);

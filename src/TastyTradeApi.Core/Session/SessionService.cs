@@ -17,7 +17,7 @@ public class SessionService
         var loginResponse = await _apiClient.Post<LoginResponse>("sessions", new { login, password, rememberMe });
         if (loginResponse != null)
         {
-            _apiClient.SetAuthorizationToken(loginResponse.Data.SessionToken);
+            _apiClient.SetSessionToken(loginResponse.Data.SessionToken);
         }
         return loginResponse;
     }
@@ -27,7 +27,7 @@ public class SessionService
         var loginResponse = await _apiClient.Post<LoginResponse>("sessions", new { login, rememberToken, rememberMe });
         if (loginResponse != null)
         {
-            _apiClient.SetAuthorizationToken(loginResponse.Data.SessionToken);
+            _apiClient.SetSessionToken(loginResponse.Data.SessionToken);
         }
         return loginResponse;
     }
