@@ -9,7 +9,7 @@ public class AccountService
 
     public AccountService(ApiClient apiClient)
     {
-        _apiClient = apiClient;
+        _apiClient = apiClient ?? throw new ArgumentNullException(nameof(apiClient));
     }
 
     public async Task<ApiResponseWrapper<ItemCollection<AccountContainer>>?> GetAccounts()

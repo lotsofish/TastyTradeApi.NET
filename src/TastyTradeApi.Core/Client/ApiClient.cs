@@ -7,18 +7,21 @@ namespace TastyTradeApi.Core.Client;
 
 public class ApiClient
 {
+    private const string BaseUrl = "https://api.tastyworks.com";
+    private const string BaseUrl_Cert = "https://api.cert.tastyworks.com";
+
     private readonly HttpClient _httpClient = new();
     public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         PropertyNamingPolicy = new DashedJsonNamingPolicy.DashedJsonNamingPolicy()
     };
 
-    public ApiClient(string baseAddress) : this(baseAddress, null)
+    public ApiClient(bool isCert) : this(isCert, null)
     { }
 
-    public ApiClient(string baseAddress, string? sessionToken)
+    public ApiClient(bool isCert, string? sessionToken)
     {
-        _httpClient.BaseAddress = new Uri(baseAddress);
+        _httpClient.BaseAddress = new Uri(isCert ? BaseUrl_Cert : BaseUrl);
         _httpClient.DefaultRequestHeaders.Add("User-Agent", "TastyTradeApi.NET");
         _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         if (!string.IsNullOrEmpty(sessionToken))
