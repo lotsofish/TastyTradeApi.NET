@@ -38,4 +38,9 @@ public class NetLiquidatingValueHistoryService
 
         return await _apiClient.Get<ItemCollection<NetLiquidatingValueHistoryResponse>>($"accounts/{accountNumber}/net-liq/history?{queryString.ToString()}");
     }
+
+    public async Task<ApiResponseWrapper<NetLiquidatingValueResponse>?> GetNetLiquidatingValue(string accountNumber)
+    {
+        return await _apiClient.Get<NetLiquidatingValueResponse>($"accounts/{accountNumber}/net-liq");
+    }
 }
