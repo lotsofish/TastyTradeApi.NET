@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.RegularExpressions;
 using TastyTradeApi.Core.Models;
 
 namespace TastyTradeApi.Cli.Utils;
@@ -32,10 +33,15 @@ public static class ConsoleWriter
             }
             else if ((propertiesToDisplay != null && propertiesToDisplay.Contains(property.Name)) || all)
             {
-                formattedData.AppendLine($"{property.Name}: {property.GetValue(data)}");
+                formattedData.AppendLine($"{FormatName(property.Name)}: {property.GetValue(data)}");
             }
         }
 
         Console.Write(formattedData.ToString());
+    }
+
+    private static string FormatName(string name)
+    {
+        return new Regex("(?![A-Z])(.*?)([A-Z])").Replace(name, "$1 $2");
     }
 }

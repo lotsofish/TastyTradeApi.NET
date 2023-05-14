@@ -21,4 +21,9 @@ public class AccountService
     {
         return await _apiClient.Get<BalancesResponse>($"accounts/{accountNumber}/balances");
     }
+
+    public async Task<ApiResponseWrapper<TradingStatusResponse>?> GetTradingStatus(string accountNumber)
+    {
+        return await _apiClient.Get<TradingStatusResponse>($"accounts/{accountNumber}/trading-status");
+    }
 }
