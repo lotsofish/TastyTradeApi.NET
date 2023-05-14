@@ -19,6 +19,15 @@ public class SessionFileService
         return session;
     }
 
+    internal void RemoveSessionFile()
+    {
+        if (!File.Exists(SESSION_FILE))
+        {
+            return;
+        }
+        File.Delete(SESSION_FILE);
+    }
+
     internal void WriteSession(SessionModel sessionModel)
     {
         using var fileStream = File.Create(SESSION_FILE);

@@ -6,6 +6,7 @@ using TastyTradeApi.Core.Models;
 
 var rootCommand = new RootCommand("TastyTrade API CLI");
 rootCommand.AddCommand(new LoginCommand());
+rootCommand.AddCommand(new LogoutCommand());
 rootCommand.AddCommand(new AccountsCommand());
 rootCommand.AddCommand(new BalanceCommand());
 
