@@ -1,3 +1,3 @@
-namespace TastyTradeApi.Cli.Models;
+namespace TastyTradeApi.Cli.Sessions;
 
 public record SessionModel(string SessionToken, bool IsCert);

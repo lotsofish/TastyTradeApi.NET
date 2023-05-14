@@ -1,6 +1,5 @@
 using System.CommandLine;
-using System.Text.Json;
-using TastyTradeApi.Cli.Models;
+using TastyTradeApi.Cli.Sessions;
 using TastyTradeApi.Core;
 using TastyTradeApi.Core.Models;
 
@@ -10,9 +9,9 @@ public class LoginCommand : Command
 {
     private const string SESSION_FILE = "session.dat";
 
-    private Argument<string> _usernameArgument = new Argument<string>("username", "TastyTrade Username");
-    private Argument<string> _passwordArgument = new Argument<string>("password", "TastyTrade Password");
-    private Option<bool> _isCertOption = new Option<bool>("--is-cert", () => false, "If True, use cert environment. Defaults to False");
+    private Option<string?> _usernameArgument = new Option<string?>("username", "TastyTrade Username");
+    private Option<string?> _passwordArgument = new Option<string?>("password", "TastyTrade Password");
+    private Option<bool> _isCertOption = new Option<bool>("--is-cert", () => false, "Use the sandbox certification environment. This requires a TastyTrade Developer account and a sandbox certification environment account. See https://support.tastyworks.com/support/solutions/articles/43000700385-tastytrade-open-api for details.");
 
     public LoginCommand() : base("login", "Login to TastyTrade")
     {
@@ -23,8 +22,22 @@ public class LoginCommand : Command
         this.SetHandler(HandleCommand, _usernameArgument, _passwordArgument, _isCertOption);
     }
 
-    private static async Task HandleCommand(string username, string password, bool isCert)
+    private static async Task HandleCommand(string? username, string? password, bool isCert)
     {
+        if (isCert) { Console.WriteLine("Using sandbox certification environment"); }
+
+        while (string.IsNullOrEmpty(username))
+        {
+            Console.Write("Username: ");
+            username = Console.ReadLine();
+        }
+
+        while (string.IsNullOrEmpty(password))
+        {
+            Console.Write("Password: ");
+            password = Console.ReadLine();
+        }
+
         Console.WriteLine("Logging in to TastyTrade...");
         try
         {
@@ -34,9 +47,7 @@ public class LoginCommand : Command
             if (loginResponse?.Data != null)
             {
                 var sessionModel = new SessionModel(loginResponse.Data.SessionToken, isCert);
-                using var fileStream = File.Create(SESSION_FILE);
-                JsonSerializer.Serialize(fileStream, sessionModel);
-                fileStream.Close();
+                new SessionFileService().WriteSession(sessionModel);
                 Console.WriteLine("Login successful, session stored");
             }
             else
