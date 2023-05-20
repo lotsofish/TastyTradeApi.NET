@@ -5,7 +5,7 @@ namespace TastyTradeApi.Cli.Commands;
 
 public class AccountsStatusCommand : AuthenticatedCommandBase
 {
-    private Argument<string> _accountArgument = new Argument<string>("account");
+    private Argument<string> _accountArgument = new Argument<string>("account", "The account number");
 
     public AccountsStatusCommand() : base("status", "Gets the account status")
     {

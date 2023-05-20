@@ -9,6 +9,7 @@ rootCommand.AddCommand(new LoginCommand());
 rootCommand.AddCommand(new LogoutCommand());
 rootCommand.AddCommand(new AccountsCommand());
 rootCommand.AddCommand(new BalanceCommand());
+rootCommand.AddCommand(new PositionsCommand());
 
 var builder = new CommandLineBuilder(rootCommand);
 builder.UseDefaults();
