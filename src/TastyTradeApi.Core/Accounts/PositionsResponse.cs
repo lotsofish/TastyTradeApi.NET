@@ -10,6 +10,8 @@ public record PositionsResponse(
     string AverageOpenPrice,
     string AverageYearlyMarketClosePrice,
     string AverageDailyMarketClosePrice,
+    string Mark,
+    string MarkPrice,
     int Multiplier,
     string CostEffect,
     bool IsSuppressed,

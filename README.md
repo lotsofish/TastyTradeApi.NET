@@ -8,6 +8,8 @@ Planning on including most of the REST API endpoints before adding the streamer
 ## TastyTrade.Core
 This is the main library for interacting with the API
 
+Eventually publish this as a Nuget package?
+
 ## TastyTrade.Cli
 This is a console application which uses some of the functionality provided in the Core library
 
