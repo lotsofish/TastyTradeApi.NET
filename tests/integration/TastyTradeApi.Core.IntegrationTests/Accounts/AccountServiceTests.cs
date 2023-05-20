@@ -36,4 +36,16 @@ public class AccountServiceTests
 
         Assert.NotNull(tradingStatus);
     }
+
+    [Fact]
+    public async Task GetPositions_ReturnsPositions()
+    {
+        var client = new TastyTrade(true);
+        await client.SessionService.Login(MockData.Username, MockData.Password);
+        var accounts = await client.AccountService.GetAccounts() ?? throw new Exception("Accounts not found");
+
+        var positions = await client.AccountService.GetPositions(accounts.Data.Items.First().Account.AccountNumber);
+
+        Assert.NotNull(positions);
+    }
 }

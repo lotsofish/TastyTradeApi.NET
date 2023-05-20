@@ -26,4 +26,10 @@ public class AccountService
     {
         return await _apiClient.Get<TradingStatusResponse>($"accounts/{accountNumber}/trading-status");
     }
+
+    public async Task<ApiResponseWrapper<ItemCollection<PositionsResponse>>?> GetPositions(string accountNumber)
+    {
+        return await _apiClient.Get<ItemCollection<PositionsResponse>>($"accounts/{accountNumber}/positions");
+
+    }
 }
