@@ -48,4 +48,16 @@ public class AccountServiceTests
 
         Assert.NotNull(positions);
     }
+
+    [Fact]
+    public async Task GetPositionLimit_ReturnsLimit()
+    {
+        var client = new TastyTrade(true);
+        await client.SessionService.Login(MockData.Username, MockData.Password);
+        var accounts = await client.AccountService.GetAccounts() ?? throw new Exception("Accounts not found");
+
+        var limit = await client.AccountService.GetPositionLimit(accounts.Data.Items.First().Account.AccountNumber);
+
+        Assert.NotNull(limit);
+    }
 }

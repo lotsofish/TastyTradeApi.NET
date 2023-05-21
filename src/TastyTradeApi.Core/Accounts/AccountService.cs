@@ -50,4 +50,10 @@ public class AccountService
 
         return await _apiClient.Get<ItemCollection<PositionsResponse>>($"accounts/{accountNumber}/positions?{string.Join("&", queryString)}");
     }
+
+    public async Task<ApiResponseWrapper<PositionLimitResponse>?> GetPositionLimit(string accountNumber)
+    {
+        return await _apiClient.Get<PositionLimitResponse>($"accounts/{accountNumber}/position-limit");
+
+    }
 }
