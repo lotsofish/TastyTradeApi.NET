@@ -54,6 +54,11 @@ public class AccountService
     public async Task<ApiResponseWrapper<PositionLimitResponse>?> GetPositionLimit(string accountNumber)
     {
         return await _apiClient.Get<PositionLimitResponse>($"accounts/{accountNumber}/position-limit");
+    }
+
+    public async Task<ApiResponseWrapper<TotalFeesResponse>?> GetTotalFees(string accountNumber)
+    {
+        return await _apiClient.Get<TotalFeesResponse>($"accounts/{accountNumber}/transactions/total-fees");
 
     }
 }

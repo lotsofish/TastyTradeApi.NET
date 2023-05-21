@@ -7,5 +7,6 @@ internal class AccountsCommand : AuthenticatedCommandBase
         AddCommand(new AccountsListCommand());
         AddCommand(new AccountsStatusCommand());
         AddCommand(new AccountsPositionLimitCommand());
+        AddCommand(new AccountsTotalFeesCommand());
     }
 }

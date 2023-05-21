@@ -60,4 +60,16 @@ public class AccountServiceTests
 
         Assert.NotNull(limit);
     }
+
+    [Fact]
+    public async Task GetTotalFees_ReturnsFees()
+    {
+        var client = new TastyTrade(true);
+        await client.SessionService.Login(MockData.Username, MockData.Password);
+        var accounts = await client.AccountService.GetAccounts() ?? throw new Exception("Accounts not found");
+
+        var fees = await client.AccountService.GetTotalFees(accounts.Data.Items.First().Account.AccountNumber);
+
+        Assert.NotNull(fees);
+    }
 }
