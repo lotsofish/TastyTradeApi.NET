@@ -3,11 +3,11 @@ using TastyTradeApi.Cli.Utils;
 
 namespace TastyTradeApi.Cli.Commands;
 
-public class SymbolsSearchCommand : AuthenticatedCommandBase
+internal class SymbolsSearchCommand : AuthenticatedCommandBase
 {
     Argument<string> _searchArgument = new("search", "Search string");
 
-    public SymbolsSearchCommand() : base("search", "Search for symbols (Use quotes for phrases, 'proshares ultrapro')")
+    internal SymbolsSearchCommand() : base("search", "Search for symbols (Use quotes for phrases, 'proshares ultrapro')")
     {
         AddArgument(_searchArgument);
 

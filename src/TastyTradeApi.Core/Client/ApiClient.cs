@@ -16,12 +16,12 @@ public class ApiClient
         PropertyNamingPolicy = new DashedJsonNamingPolicy.DashedJsonNamingPolicy()
     };
 
-    public ApiClient(bool isCert) : this(isCert, null)
+    public ApiClient(bool useCert) : this(useCert, null)
     { }
 
-    public ApiClient(bool isCert, string? sessionToken)
+    public ApiClient(bool useCert, string? sessionToken)
     {
-        _httpClient.BaseAddress = new Uri(isCert ? BaseUrl_Cert : BaseUrl);
+        _httpClient.BaseAddress = new Uri(useCert ? BaseUrl_Cert : BaseUrl);
         _httpClient.DefaultRequestHeaders.Add("User-Agent", "TastyTradeApi.NET");
         _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
         if (!string.IsNullOrEmpty(sessionToken))

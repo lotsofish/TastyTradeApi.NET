@@ -1,8 +1,8 @@
 namespace TastyTradeApi.Cli.Commands;
 
-public class AccountsCommand : AuthenticatedCommandBase
+internal class AccountsCommand : AuthenticatedCommandBase
 {
-    public AccountsCommand() : base("accounts", "Gets information regarding your accounts")
+    internal AccountsCommand() : base("accounts", "Gets information regarding your accounts")
     {
         AddCommand(new AccountsListCommand());
         AddCommand(new AccountsStatusCommand());

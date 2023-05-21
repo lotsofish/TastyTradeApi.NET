@@ -3,13 +3,13 @@ using TastyTradeApi.Cli.Utils;
 
 namespace TastyTradeApi.Cli.Commands;
 
-public class BalanceCommand : AuthenticatedCommandBase
+internal class BalanceCommand : AuthenticatedCommandBase
 {
     private Argument<string> _accountArgument = new Argument<string>("account");
     private Option<bool> _allOption = new Option<bool>("--all", "Shows all the account balance properties");
     private List<string> propertiesToDisplay = new() { "AccountNumber", "NetLiquidatingValue", "CashBalance", "MarginEquity", "EquityBuyingPower" };
 
-    public BalanceCommand() : base("balance", "Shows the current balance")
+    internal BalanceCommand() : base("balance", "Shows the current balance")
     {
         this.AddArgument(_accountArgument);
         this.AddOption(_allOption);

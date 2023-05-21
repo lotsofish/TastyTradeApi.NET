@@ -3,23 +3,23 @@ namespace TastyTradeApi.Core.IntegrationTests;
 public class TastyTradeTests
 {
     [Fact]
-    public void TastyTrade_IsCert()
+    public void TastyTrade_UseCert()
     {
-        bool isCert = true;
+        bool useCert = true;
 
-        var client = new TastyTrade(isCert);
+        var client = new TastyTrade(useCert);
 
         Assert.NotNull(client);
     }
 
     [Fact]
-    public async Task TastyTrade_IsCert_SessionToken()
+    public async Task TastyTrade_UseCert_SessionToken()
     {
-        bool isCert = true;
-        var client = new TastyTrade(isCert);
+        bool useCert = true;
+        var client = new TastyTrade(useCert);
         var session = await client.SessionService.Login(MockData.Username, MockData.Password);
 
-        var client2 = new TastyTrade(isCert, session?.Data.SessionToken);
+        var client2 = new TastyTrade(useCert, session?.Data.SessionToken);
         var user = await client2.SessionService.Validate();
 
         Assert.NotNull(user);

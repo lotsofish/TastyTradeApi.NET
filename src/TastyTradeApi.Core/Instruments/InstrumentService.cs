@@ -16,4 +16,6 @@ public class InstrumentService
     {
         return await _apiClient.Get<ItemCollection<SearchResult>>($"/symbols/search/{searchString}");
     }
+
+
 }

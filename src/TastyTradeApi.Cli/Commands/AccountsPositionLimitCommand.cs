@@ -3,10 +3,10 @@ using TastyTradeApi.Cli.Utils;
 
 namespace TastyTradeApi.Cli.Commands;
 
-public class AccountsPositionLimitCommand : AuthenticatedCommandBase
+internal class AccountsPositionLimitCommand : AuthenticatedCommandBase
 {
     private Argument<string> _accountArgument = new Argument<string>("account", "The account number");
-    public AccountsPositionLimitCommand() : base("position-limit", "Gets the account position limits")
+    internal AccountsPositionLimitCommand() : base("position-limit", "Gets the account position limits")
     {
         AddArgument(_accountArgument);
 

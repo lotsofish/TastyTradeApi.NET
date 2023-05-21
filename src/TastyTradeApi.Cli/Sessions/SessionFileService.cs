@@ -1,5 +1,4 @@
 using System.Text.Json;
-using TastyTradeApi.Core;
 
 namespace TastyTradeApi.Cli.Sessions;
 
@@ -21,11 +20,10 @@ public class SessionFileService
 
     internal void RemoveSessionFile()
     {
-        if (!File.Exists(SESSION_FILE))
+        if (File.Exists(SESSION_FILE))
         {
-            return;
+            File.Delete(SESSION_FILE);
         }
-        File.Delete(SESSION_FILE);
     }
 
     internal void WriteSession(SessionModel sessionModel)

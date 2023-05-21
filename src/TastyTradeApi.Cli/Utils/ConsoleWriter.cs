@@ -4,9 +4,9 @@ using TastyTradeApi.Core.Models;
 
 namespace TastyTradeApi.Cli.Utils;
 
-public static class ConsoleWriter
+internal static class ConsoleWriter
 {
-    public static void WriteData<T>(ItemCollection<T>? data, IList<string>? propertiesToDisplay = null, bool all = true)
+    internal static void WriteData<T>(ItemCollection<T>? data, IList<string>? propertiesToDisplay = null, bool all = true)
     {
         if (data == null) return;
 
@@ -18,7 +18,7 @@ public static class ConsoleWriter
 
     }
 
-    public static void WriteData<T>(T? data, IList<string>? propertiesToDisplay = null, bool all = true)
+    internal static void WriteData<T>(T? data, IList<string>? propertiesToDisplay = null, bool all = true)
     {
         if (data == null) return;
 

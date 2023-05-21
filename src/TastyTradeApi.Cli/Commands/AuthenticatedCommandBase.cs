@@ -6,7 +6,7 @@ using TastyTradeApi.Core.Session;
 
 namespace TastyTradeApi.Cli.Commands;
 
-public class AuthenticatedCommandBase : Command
+internal class AuthenticatedCommandBase : Command
 {
     private TastyTrade? _client;
     protected SessionFileService SessionFileService { get; } = new();
@@ -15,14 +15,14 @@ public class AuthenticatedCommandBase : Command
     public AuthenticatedCommandBase(string name, string? description = null) : base(name, description)
     { }
 
-    protected TastyTrade GetClient()
+    internal TastyTrade GetClient()
     {
         if (_client != null) { return _client; }
 
         var session = SessionFileService.GetSession();
         if (session != null)
         {
-            _client = new TastyTrade(session.IsCert, session.SessionToken);
+            _client = new TastyTrade(session.UseCert, session.SessionToken);
         }
 
         if (_client != null)

@@ -3,7 +3,7 @@ using TastyTradeApi.Cli.Utils;
 using TastyTradeApi.Core.Accounts;
 
 namespace TastyTradeApi.Cli.Commands;
-public class PositionsListCommand : AuthenticatedCommandBase
+internal class PositionsListCommand : AuthenticatedCommandBase
 {
     private Argument<string> _accountArgument = new Argument<string>("account", "The account number");
     private Option<string?> _underlyingOption = new Option<string?>("--underlying", "Filter positions by underlying");
@@ -15,7 +15,7 @@ public class PositionsListCommand : AuthenticatedCommandBase
     private Option<bool> _allOption = new Option<bool>("--all", "Shows all the position properties");
     private List<string> propertiesToDisplay = new() { "Symbol", "InstrumentType", "UnderlyingSymbol", "Quantity", "QuantityDirection", "ClosePrice", "AverageOpenPrice", "ExpiresAt" };
 
-    public PositionsListCommand() : base("list", "List positions")
+    internal PositionsListCommand() : base("list", "List positions")
     {
         AddArgument(_accountArgument);
         AddOption(_underlyingOption);

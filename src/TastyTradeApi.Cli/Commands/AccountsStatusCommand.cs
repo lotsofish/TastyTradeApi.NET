@@ -3,11 +3,11 @@ using TastyTradeApi.Cli.Utils;
 
 namespace TastyTradeApi.Cli.Commands;
 
-public class AccountsStatusCommand : AuthenticatedCommandBase
+internal class AccountsStatusCommand : AuthenticatedCommandBase
 {
     private Argument<string> _accountArgument = new Argument<string>("account", "The account number");
 
-    public AccountsStatusCommand() : base("status", "Gets the account status")
+    internal AccountsStatusCommand() : base("status", "Gets the account status")
     {
         AddArgument(_accountArgument);
 

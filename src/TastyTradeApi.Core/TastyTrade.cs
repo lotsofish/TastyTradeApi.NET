@@ -18,12 +18,12 @@ public class TastyTrade
     public TastyTrade(string sessionToken) : this(false, sessionToken)
     { }
 
-    public TastyTrade(bool isCert) : this(isCert, null)
+    public TastyTrade(bool useCert) : this(useCert, null)
     { }
 
-    public TastyTrade(bool isCert = false, string? sessionToken = null)
+    public TastyTrade(bool useCert = false, string? sessionToken = null)
     {
-        _apiClient = new ApiClient(isCert, sessionToken);
+        _apiClient = new ApiClient(useCert, sessionToken);
 
         AccountService = new(_apiClient);
         InstrumentService = new(_apiClient);
