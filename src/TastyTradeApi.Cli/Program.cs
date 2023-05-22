@@ -9,6 +9,7 @@ rootCommand.AddCommand(new LoginCommand());
 rootCommand.AddCommand(new LogoutCommand());
 rootCommand.AddCommand(new AccountsCommand());
 rootCommand.AddCommand(new BalanceCommand());
+rootCommand.AddCommand(new OrdersCommand());
 rootCommand.AddCommand(new PositionsCommand());
 rootCommand.AddCommand(new SymbolsCommand());
 

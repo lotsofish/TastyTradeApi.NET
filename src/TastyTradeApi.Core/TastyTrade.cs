@@ -2,6 +2,7 @@ using TastyTradeApi.Core.Accounts;
 using TastyTradeApi.Core.Client;
 using TastyTradeApi.Core.Instruments;
 using TastyTradeApi.Core.NetLiquidatingValueHistory;
+using TastyTradeApi.Core.Orders;
 using TastyTradeApi.Core.Session;
 
 namespace TastyTradeApi.Core;
@@ -13,6 +14,7 @@ public class TastyTrade
     public AccountService AccountService { get; init; }
     public InstrumentService InstrumentService { get; init; }
     public NetLiquidatingValueHistoryService NetLiquidatingValueHistoryService { get; init; }
+    public OrderService OrderService { get; init; }
     public SessionService SessionService { get; init; }
 
     public TastyTrade(string sessionToken) : this(false, sessionToken)
@@ -28,6 +30,7 @@ public class TastyTrade
         AccountService = new(_apiClient);
         InstrumentService = new(_apiClient);
         NetLiquidatingValueHistoryService = new(_apiClient);
+        OrderService = new(_apiClient);
         SessionService = new(_apiClient);
     }
 }
